@@ -345,12 +345,12 @@
       <div class="actions">
         <a class="btn" href="sms:+14438951832">Text Jesse</a>
         <a class="btn ghost" href="mailto:wealthbuildersgroupllc@gmail.com">Email Jesse</a>
-        <a class="btn ghost" id="vcardlink" href="#" download="Jesse-Stamm-Optimum.vcf">Save my contact</a>
+        <a class="btn ghost" href="jesse-stamm.vcf" download="Jesse-Stamm-Optimum.vcf">Save my contact</a>
         <a class="btn ghost" href="https://optimumprotects.com/#quote" target="_blank" rel="noopener">Book a call</a>
       </div>
     </div>
     <div class="vcard">
-      <div><strong>Jesse Stamm</strong><span>Optimum · Health | Life | Retirement</span><span>wealthbuildersgroupllc@gmail.com</span><span>optimumprotects.com</span><span style="margin-top:.5rem;color:var(--gold)">Scan to save my card</span></div>
+      <div><strong>Jesse Stamm</strong><span>President, Optimum Financial Solutions</span><span>wealthbuildersgroupllc@gmail.com</span><span>optimumprotects.com</span><span style="margin-top:.5rem;color:var(--gold)">Scan to save my card</span></div>
       <div class="qr" id="vcardqr"></div>
     </div>
   </div>
@@ -380,10 +380,7 @@
   function qr(el,text,size){ if(!window.QRCode){ return; } el.innerHTML=''; new QRCode(el,{text:text,width:size,height:size,correctLevel:QRCode.CorrectLevel.M}); }
   document.querySelectorAll('[data-qr]').forEach(function(el){ qr(el,el.dataset.qr,76); });
   // vCard
-  var vcf="BEGIN:VCARD\nVERSION:3.0\nN:Stamm;Jesse;;;\nFN:Jesse Stamm\nORG:Optimum Financial Solutions\nTITLE:Health | Life | Retirement\nTEL;TYPE=CELL:+14438951832\nEMAIL:wealthbuildersgroupllc@gmail.com\nURL:https://optimumprotects.com/health/manhattanlife\nNOTE:Your Optimum advocate. Call or text anytime. Plan resources: https://optimumprotects.com/health/manhattanlife\nEND:VCARD";
-  var link=document.getElementById('vcardlink');
-  link.href='data:text/vcard;charset=utf-8,'+encodeURIComponent(vcf);
-  qr(document.getElementById('vcardqr'),vcf,100);
+  qr(document.getElementById('vcardqr'),'https://optimumprotects.com/manhattanlife/jesse-stamm.vcf',100);
 })();
 </script>
 </body>
