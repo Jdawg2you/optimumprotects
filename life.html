@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Insurance — Optimum</title>
+<meta name="description" content="Life insurance from Optimum — term, whole life, final expense, and IUL. Protecting the people who depend on you, shopped across the market.">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand" aria-label="Optimum — Health, Life, Retirement">
+      <img src="logo.png" alt="Optimum">
+      <span class="lock"><span class="word">OPTIMUM</span><span class="desc">HEALTH · LIFE · RETIREMENT</span></span>
+    </a>
+    <nav class="menu">
+      <a href="index.html#how">How it works</a>
+      <a href="health.html">Health</a>
+      <a href="life.html">Life</a>
+      <a href="retirement.html">Retirement</a>
+      <a href="index.html#stories">About</a>
+      <a href="index.html#join">Join our team</a>
+    </nav>
+    <div class="nav-right">
+      <a href="tel:4079003122" class="phone">(407) 900-3122</a>
+      <a href="index.html#quote" class="pill">Get a Quote</a>
+      <button class="hamb" aria-label="Menu" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+  <div class="wrap"><div class="mobile-menu" id="mm">
+    <a href="index.html#how">How it works</a><a href="health.html">Health</a><a href="life.html">Life</a><a href="retirement.html">Retirement</a>
+    <a href="index.html#stories">About</a><a href="index.html#join">Join our team</a><a href="index.html#quote">Get a Quote</a>
+  </div></div>
+</header>
+
+<section class="detail-hero">
+  <div class="wrap reveal">
+    <a href="index.html#services" class="back">← Health · Life · Retirement</a>
+    <span class="kicker">Protect what matters</span>
+    <h1>Life</h1>
+    <p class="lead">Protecting the people who depend on you — and building options you can use in your lifetime, not just after.</p>
+  </div>
+</section>
+
+<section class="detail-body">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kicker">What we help with</span><h2>The right kind of protection.</h2></div>
+    <div class="flist">
+      <div class="fcard reveal"><h3>Term life</h3><p>Affordable protection for the years your family needs it most — income replacement, mortgage, and more.</p></div>
+      <div class="fcard reveal"><h3>Whole life</h3><p>Lifetime coverage that builds guaranteed cash value over time. Protection that grows with you.</p></div>
+      <div class="fcard reveal"><h3>Final expense</h3><p>Cover funeral and end-of-life costs so your family is never left with a bill during the hardest time.</p></div>
+      <div class="fcard reveal"><h3>Indexed Universal Life (IUL)</h3><p>Permanent coverage with tax-advantaged cash value you can access in life — a protection and planning tool, not an investment.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="reassure">
+  <div class="wrap reveal"><p>One advocate who knows your whole picture — so your life coverage works alongside your health and retirement, not against it.</p></div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap reveal">
+    <h2>Let's find the right fit.</h2>
+    <p>A free 15-minute call, and we'll shop the market for you — no pressure, no obligation.</p>
+    <a href="index.html#quote" class="pill">Get a Free Quote</a>
+    <div class="pagedisc" style="margin-left:auto;margin-right:auto">Life insurance is for protection first. IUL cash-value features carry costs and conditions and are not an investment. Availability and pricing vary by carrier, state, and eligibility.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot"><div class="word">OPTIMUM</div><div class="tag">Own Your Future.</div></div>
+      <div class="foot-links">
+        <div class="foot-col"><div class="h">Explore</div><a href="health.html">Health</a><a href="life.html">Life</a><a href="retirement.html">Retirement</a></div>
+        <div class="foot-col"><div class="h">Company</div><a href="index.html#stories">About</a><a href="index.html#join">Join our team</a><a href="index.html#quote">Contact</a></div>
+        <div class="foot-col"><div class="h">Get started</div><a href="index.html#quote">Get a quote</a><a href="tel:4079003122">(407) 900-3122</a></div>
+      </div>
+    </div>
+    <div class="legal">Optimum Financial Solutions — a licensed insurance agency. We are not financial advisors, investment advisors, or certified planners; nothing here is financial, tax, or legal advice. Product availability, benefits, and costs vary by carrier, state, and eligibility. © 2026 Optimum Financial Solutions. All rights reserved.</div>
+  </div>
+</footer>
+<script>
+(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});document.querySelectorAll('.reveal,.img-reveal').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>
