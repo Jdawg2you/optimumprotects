@@ -102,6 +102,14 @@
   .vendor .qr{width:84px;height:84px;background:#fff;padding:4px;border:1px solid var(--line)}
   .vendor .qr img,.vendor .qr canvas{width:100%;height:100%;display:block}
   .vendor small{display:block;color:var(--muted);font-size:.82rem;margin-top:.35rem}
+  .vendor .more{margin-top:.6rem;border-top:1px solid var(--line);padding-top:.5rem}
+  .vendor .more summary{cursor:pointer;font-family:var(--display);font-weight:700;font-size:.82rem;color:var(--gold);list-style:none}
+  .vendor .more summary::-webkit-details-marker{display:none}
+  .vendor .more summary::after{content:" +";font-weight:800}
+  .vendor .more[open] summary::after{content:" –"}
+  .vendor .more h4{font-size:.85rem;margin-top:.6rem}
+  .vendor .more p{font-size:.85rem;color:var(--muted);margin:.2rem 0 0}
+  .vendor .more .src{font-size:.78rem;margin-top:.6rem}
   /* matrix */
   .matrix{overflow-x:auto;margin-top:1.25rem}
   table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:640px}
@@ -160,6 +168,7 @@
         <span>If you ever get a medical bill over $2,500, don't pay it until you've called CareGuide.</span>
         <a class="num" href="tel:+14699022267">469-902-2267</a>
         <span>Then call me. We'll sort it out together.</span>
+        <span style="margin-top:.5rem">Mon&ndash;Fri, 8&nbsp;AM&ndash;5&nbsp;PM Central. After hours, <a href="https://www.cgasaves.com/manhattanlifemembers" target="_blank" rel="noopener" style="color:var(--gold-soft)">upload the bill anytime</a> and they pick it up the next business day.</span>
       </div>
     </div>
   </div>
@@ -194,7 +203,7 @@
     </li>
     <li class="step" data-key="careguide">
       <button class="box" aria-label="Mark done"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B0B0B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
-      <div><h3>Save CareGuide to your phone</h3><p>Save <b>469-902-2267</b> as "CareGuide — call before paying bills." They negotiate hospital bills, find errors, price care before you go, and help with prescriptions.</p></div>
+      <div><h3>Save CareGuide to your phone</h3><p>Save <b>469-902-2267</b> as "CareGuide — call before paying bills," and bookmark <a href="https://www.cgasaves.com/manhattanlifemembers" target="_blank" rel="noopener">their upload page</a> for sending in bills. Call before a procedure to price it, and after any bill over $2,500 before you pay it.</p></div>
       <a class="btn ghost" href="tel:+14699022267">Call CareGuide</a>
     </li>
   </ol>
@@ -288,7 +297,16 @@
   <p class="lead">Call me first if you're not sure. But these are the people who can actually do things — process a claim, negotiate a bill, book a visit — and every one of them is a tap away.</p>
   <div class="vendors">
     <div class="vendor"><div><div class="use">Your insurer</div><h3>ManhattanLife</h3><a href="https://clients.manhattanlife.com" target="_blank" rel="noopener">clients.manhattanlife.com</a><small>Policy documents, ID cards, claims, payments, banking changes. Claims: Easy Upload app, or fax 713-821-6518, or mail P.O. Box 925309, Houston TX 77292-5309.</small></div><div class="qr" data-qr="https://clients.manhattanlife.com"></div></div>
-    <div class="vendor"><div><div class="use">Bill advocate</div><h3>CareGuide</h3><a href="tel:+14699022267">469-902-2267</a><br><a href="mailto:services@cgasaves.com">services@cgasaves.com</a><small>Any bill over $2,500 — call before you pay. Bill negotiation, pricing before care, Rx help.</small></div><div class="qr" data-qr="https://www.cgasaves.com"></div></div>
+    <div class="vendor"><div><div class="use">Bill advocate</div><h3>CareGuide</h3><a href="tel:+14699022267">469-902-2267</a><br><a href="mailto:members@cgasaves.com">members@cgasaves.com</a><br><a href="https://www.cgasaves.com/manhattanlifemembers" target="_blank" rel="noopener">Secure bill upload</a><small>Any bill over $2,500 — call before you pay. Mon–Fri, 8 AM–5 PM Central; upload a case anytime, or ask for a callback. Included with your plan at no extra cost.</small>
+      <details class="more"><summary>When to call CareGuide</summary>
+        <h4>Before care</h4>
+        <p>Your doctor recommends a procedure, scan, or test and you want the best cash price — call first. They price outpatient surgery, MRIs and CT scans, colonoscopies, cancer treatment, advanced testing, lab work and medical equipment, in or out of the First Health network, and can help you find a local mental-health provider.</p>
+        <h4>After care</h4>
+        <p>Any bill over $2,500 that lands on you — a denied claim, a balance left after ManhattanLife paid, or care your plan didn't cover — goes to their <b>Hospital Bill Eraser</b> before you pay a dollar. They apply hospital financial-assistance programs, review the bill line by line for errors, and negotiate the rest down. You get an update every week until it's resolved. Not sure a bill qualifies? Call and they'll check.</p>
+        <h4>What they don't handle</h4>
+        <p>Routine office visits, finding an in-network doctor (that's First Health, above), telling you what your co-pay or benefit will be, or chasing reimbursements. For those, use the Easy Upload app or call me.</p>
+        <p class="src">CareGuide's own material: <a href="https://online.flippingbook.com/view/21294178/2/" target="_blank" rel="noopener">member flyer</a> · <a href="https://online.flippingbook.com/view/973214304/2/" target="_blank" rel="noopener">full FAQ</a>. CareGuide is an advocacy service, not an insurance company; savings vary by case and aren't guaranteed.</p>
+      </details></div><div class="qr" data-qr="https://www.cgasaves.com/manhattanlifemembers"></div></div>
     <div class="vendor"><div><div class="use">Provider network</div><h3>First Health Network</h3><a href="tel:+18002265116">800-226-5116</a><br><a href="https://providerlocator.firsthealth.com/home/index" target="_blank" rel="noopener">Provider locator</a><small>Client code FHIND. Confirm any doctor, hospital, urgent care, or ER.</small></div><div class="qr" data-qr="https://providerlocator.firsthealth.com/home/index"></div></div>
     <div class="vendor"><div><div class="use">24/7 telehealth</div><h3>EasyCare2go</h3><a href="tel:+18667313017">866-731-3017</a><br><a href="https://manhattanlife.myeasycare2go.com/login" target="_blank" rel="noopener">Member login</a><small>Phone, chat, or video doctors; tele-dermatology; behavioral health. Group ID mlins2023.</small></div><div class="qr" data-qr="https://manhattanlife.myeasycare2go.com/login"></div></div>
     <div class="vendor"><div><div class="use">Prescription discounts</div><h3>RxEDO</h3><a href="tel:+18888797336">888-879-7336</a><br><a href="https://www.findlowrx.com" target="_blank" rel="noopener">findlowrx.com</a><small>Free discount card; price any drug at pharmacies in your zip.</small></div><div class="qr" data-qr="https://www.findlowrx.com"></div></div>
