@@ -19,6 +19,9 @@
 <link rel="icon" href="/favicon-32.png" sizes="32x32">
 <link rel="icon" href="/favicon-16.png" sizes="16x16">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="My Plan">
+<meta name="theme-color" content="#F7F3EA">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -135,6 +138,10 @@
   .vendor .qr{width:84px;height:84px;background:#fff;padding:4px;border:1px solid var(--line);border-radius:10px}
   .vendor .qr img,.vendor .qr canvas{width:100%;height:100%;display:block}
   .vendor small{display:block;color:var(--muted);font-size:.82rem;margin-top:.35rem}
+  .saveme{display:flex;gap:1.25rem;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:18px;padding:1.1rem 1.4rem;margin:1.75rem 0 .5rem}
+  .saveme strong{display:block;font-family:var(--display);font-size:1.05rem}
+  .saveme span{display:block;color:var(--muted);font-size:.9rem;margin-top:.2rem}
+  .saveme button{cursor:pointer;font-family:var(--ui)}
   .wellcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.4rem 1.6rem;margin-top:1rem}
   .wellhead{display:flex;gap:1.5rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
   .wellcard .use{font-family:var(--ui);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.7rem;color:var(--gold-deep);margin-bottom:.3rem}
@@ -239,6 +246,15 @@
 </nav>
 
 <main class="wrap">
+
+<div class="saveme" id="saveme">
+  <div>
+    <strong>Keep this page one tap away.</strong>
+    <span id="savehow">Add it to your phone's home screen and it opens like an app.</span>
+  </div>
+  <button class="btn" id="savebtn" type="button">Add to home screen</button>
+</div>
+
 
 <section id="start">
   <h2>Start here — four things this week.</h2>
@@ -492,6 +508,22 @@
   // QR codes
   function qr(el,text,size){ if(!window.QRCode){ return; } el.innerHTML=''; new QRCode(el,{text:text,width:size,height:size,correctLevel:QRCode.CorrectLevel.M}); }
   document.querySelectorAll('[data-qr]').forEach(function(el){ qr(el,el.dataset.qr,76); });
+  // add to home screen
+  (function(){
+    var bar=document.getElementById('saveme'),btn=document.getElementById('savebtn'),how=document.getElementById('savehow');
+    if(!bar){ return; }
+    var standalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
+    if(standalone){ bar.style.display='none'; return; }
+    var ua=navigator.userAgent, isIOS=/iPad|iPhone|iPod/.test(ua), deferred=null;
+    window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); deferred=e; });
+    btn.addEventListener('click',function(){
+      if(deferred){ deferred.prompt(); deferred=null; return; }
+      how.innerHTML = isIOS
+        ? 'Tap the <b>Share</b> button at the bottom of Safari, then <b>Add to Home Screen</b>.'
+        : 'Open your browser menu and choose <b>Add to Home screen</b> (or <b>Install</b>).';
+      btn.textContent='Got it';
+    });
+  })();
   // reveal on scroll, same as the main site — with a failsafe so nothing can stay hidden
   (function(){
     var els=document.querySelectorAll('section > h2, section > .kicker, section > .lead, .step, .card, .vendor, .wellcard, .rule, .hero-card, .matrix');

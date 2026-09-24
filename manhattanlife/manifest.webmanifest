@@ -1,0 +1,14 @@
+{
+  "name": "My Optimum Health Plan",
+  "short_name": "My Plan",
+  "description": "How to use your ManhattanLife plan — setup, doctors, prescriptions and who to call.",
+  "start_url": "/manhattanlife/",
+  "scope": "/manhattanlife/",
+  "display": "standalone",
+  "background_color": "#F7F3EA",
+  "theme_color": "#F7F3EA",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
