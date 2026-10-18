@@ -232,7 +232,10 @@
        verified in network}. After the # so it never reaches the server. It fills only boxes that are still empty, so
        re-opening the link never undoes the client's own edits. */
     var fresh=!!(J&&J.f&&+J.t&&!(o&&+o._t>=+J.t));   /* a card sent later than the one saved here wins */
-    if(fresh){ F.forEach(function(k){ if($(k)) $(k).value=''; }); $('has_dental').checked=false; LINK_T=+J.t; o=null; } else if(o&&o._t) LINK_T=+o._t;
+    /* a newer card sent by the agent fills in what it carries and leaves the rest alone, so the client's own additions
+       (the urgent care they found, a doctor they confirmed by phone) survive a re-send (Jesse, 18 Oct) */
+    if(fresh){ var nf=J.f||{}; Object.keys(nf).forEach(function(k){ if(F.indexOf(k)>=0&&$(k)&&String(nf[k]).trim()) $(k).value=k.slice(-3)==='_ph'?phone(nf[k]):String(nf[k]); });
+      if(J.d) $('has_dental').checked=true; LINK_T=+J.t; J=null; } else if(o&&o._t) LINK_T=+o._t;
     if(J&&!o){ var fill=function(id,v){ if(v!=null&&String(v).trim()&&!val(id)&&$(id)) $(id).value=id.slice(-3)==='_ph'?phone(v):String(v); }, f=J.f||{};
       Object.keys(f).forEach(function(k){ if(F.indexOf(k)>=0) fill(k,f[k]); });
       fill('agent',J.a); fill('agent_ph',J.p); fill('people',J.n?String(J.n):''); fill('me_doc',J.md); fill('sp_doc',J.sd); fill('kid_doc',J.kd);
