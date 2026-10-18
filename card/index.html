@@ -83,6 +83,7 @@
     .wc{border-color:#000}
   }
   #printArea{display:none}
+  #printCards .pair{display:flex;gap:.2in;margin:0 0 .18in;break-inside:avoid;page-break-inside:avoid}
   #printArea .how{font:11pt Inter,Arial,sans-serif;margin:0 0 .15in;color:#000}
 </style>
 </head>
@@ -132,7 +133,7 @@
   <section class="panel">
     <h2>Your agent</h2>
     <div class="row"><div><label class="f" for="agent">Name</label><input type="text" id="agent" autocomplete="off"></div><div><label class="f" for="agent_ph">Phone</label><input type="tel" id="agent_ph"></div></div>
-    <div class="row" style="grid-template-columns:1fr"><div><label class="f" for="name">Whose card is this? <span style="font-weight:400">(optional)</span></label><input type="text" id="name" autocomplete="off" placeholder="e.g. The Smith family"></div></div>
+    <div class="row"><div><label class="f" for="name">Whose card is this? <span style="font-weight:400">(optional)</span></label><input type="text" id="name" autocomplete="off" placeholder="e.g. The Smith family"></div><div><label class="f" for="people">People on the plan</label><input type="tel" inputmode="numeric" id="people" placeholder="1"></div></div>
   </section>
 
   <section class="panel">
@@ -149,7 +150,7 @@
 
   <section class="panel no-print">
     <h2>Your card</h2>
-    <p class="sub">This is what prints. Cut on the dashed lines and fold or glue the two sides back to back.</p>
+    <p class="sub">This is what prints — <b id="printCount">2 cards</b>: one for each person on the plan, plus a spare. Cut on the dashed lines and fold or glue the two sides back to back.</p>
     <div class="preview" id="preview"></div>
   </section>
 
@@ -165,13 +166,13 @@
   </footer>
 </main>
 
-<div id="printArea"><p class="how">Cut on the dashed lines. Fold or glue the two sides back to back.</p><div class="preview" id="printCards"></div></div>
+<div id="printArea"><p class="how">Cut on the dashed lines. Fold or glue the two sides back to back — one card for each person, plus a spare.</p><div id="printCards"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function(){
   var KEY='ml-care-card-v1';
-  var F=['name','me_doc','me_doc_ph','sp_doc','sp_doc_ph','kid_doc','kid_doc_ph','urgent','urgent_ph','hosp','hosp_ph','pharm','pharm_ph','dent','dent_ph','agent','agent_ph'];
+  var F=['name','people','me_doc','me_doc_ph','sp_doc','sp_doc_ph','kid_doc','kid_doc_ph','urgent','urgent_ph','hosp','hosp_ph','pharm','pharm_ph','dent','dent_ph','agent','agent_ph'];
   var $=function(id){ return document.getElementById(id); };
   var esc=function(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); };
   var val=function(id){ return String(($(id)||{}).value||'').trim(); };
@@ -204,15 +205,18 @@
     L.push(''); fixed().forEach(function(x){ L.push(x[0]+': '+x[1]+' · '+x[2]); });
     L.push('Find in-network providers: providerlocator.firsthealth.com'); return L.join('\n'); }
 
+  /* one card per person on the plan, plus a spare (Jesse, 18 Oct); capped so a typo can't print 50 pages */
+  function copies(){ var n=parseInt(val('people'),10); if(!(n>0)) n=1; return Math.min(n,10)+1; }
   function render(){ $('dentalBox').hidden=!$('has_dental').checked; $('dentNum').hidden=!$('has_dental').checked;
-    var h=cardsHTML(); $('preview').innerHTML=h; $('printCards').innerHTML=h;
+    var h=cardsHTML(), n=copies(); $('preview').innerHTML=h; $('printCount').textContent=n+' card'+(n===1?'':'s');
+    $('printCards').innerHTML=new Array(n+1).join('<div class="pair">'+h+'</div>');
     $('textBtn').href='sms:?&body='+encodeURIComponent(plainText()); }
 
   function save(){ try{ var o={has_dental:$('has_dental').checked}; F.forEach(function(k){ o[k]=val(k); }); localStorage.setItem(KEY,JSON.stringify(o)); }catch(e){} }
   function load(){ var o=null; try{ o=JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){}
     if(o){ F.forEach(function(k){ if(o[k]!=null&&$(k)) $(k).value=o[k]; }); $('has_dental').checked=!!o.has_dental; }
     /* an agent can send ?agent=Name&phone=5551234567 so their details are already on the card */
-    try{ var q=new URLSearchParams(location.search); if(q.get('agent')&&!val('agent')) $('agent').value=q.get('agent'); if(q.get('phone')&&!val('agent_ph')) $('agent_ph').value=phone(q.get('phone')); }catch(e){} }
+    try{ var q=new URLSearchParams(location.search); if(q.get('agent')&&!val('agent')) $('agent').value=q.get('agent'); if(q.get('phone')&&!val('agent_ph')) $('agent_ph').value=phone(q.get('phone')); if(q.get('people')&&!val('people')) $('people').value=String(parseInt(q.get('people'),10)||''); }catch(e){} }
   function toast(t){ var el=$('toast'); el.textContent=t; el.classList.add('on'); setTimeout(function(){ el.classList.remove('on'); },1600); }
 
   load(); render();
