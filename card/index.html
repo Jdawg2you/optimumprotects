@@ -236,7 +236,7 @@
        (the urgent care they found, a doctor they confirmed by phone) survive a re-send (Jesse, 18 Oct) */
     if(fresh){ var nf=J.f||{}; Object.keys(nf).forEach(function(k){ if(F.indexOf(k)>=0&&$(k)&&String(nf[k]).trim()) $(k).value=k.slice(-3)==='_ph'?phone(nf[k]):String(nf[k]); });
       if(J.d) $('has_dental').checked=true; LINK_T=+J.t; J=null; } else if(o&&o._t) LINK_T=+o._t;
-    if(J&&!o){ var fill=function(id,v){ if(v!=null&&String(v).trim()&&!val(id)&&$(id)) $(id).value=id.slice(-3)==='_ph'?phone(v):String(v); }, f=J.f||{};
+    if(J){ var fill=function(id,v){ if(v!=null&&String(v).trim()&&!val(id)&&$(id)) $(id).value=id.slice(-3)==='_ph'?phone(v):String(v); }, f=J.f||{};
       Object.keys(f).forEach(function(k){ if(F.indexOf(k)>=0) fill(k,f[k]); });
       fill('agent',J.a); fill('agent_ph',J.p); fill('people',J.n?String(J.n):''); fill('me_doc',J.md); fill('sp_doc',J.sd); fill('kid_doc',J.kd);
       if(J.d) $('has_dental').checked=true; }
@@ -244,7 +244,7 @@
     try{ var q=new URLSearchParams(location.search); if(q.get('agent')&&!val('agent')) $('agent').value=q.get('agent'); if(q.get('phone')&&!val('agent_ph')) $('agent_ph').value=phone(q.get('phone')); if(q.get('people')&&!val('people')) $('people').value=String(parseInt(q.get('people'),10)||''); }catch(e){} }
   function toast(t){ var el=$('toast'); el.textContent=t; el.classList.add('on'); setTimeout(function(){ el.classList.remove('on'); },1600); }
 
-  load(); render();
+  load(); render(); save();   /* keep what the link brought (and a newer card's time) even before they type */
   document.addEventListener('input',function(){ render(); save(); });
   document.addEventListener('change',function(){ render(); save(); });
   $('printBtn').onclick=function(){ render(); window.print(); };
