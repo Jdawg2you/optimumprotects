@@ -133,7 +133,7 @@
   <section class="panel">
     <h2>Your agent</h2>
     <div class="row"><div><label class="f" for="agent">Name</label><input type="text" id="agent" autocomplete="off"></div><div><label class="f" for="agent_ph">Phone</label><input type="tel" id="agent_ph"></div></div>
-    <div class="row"><div><label class="f" for="name">Whose card is this? <span style="font-weight:400">(optional)</span></label><input type="text" id="name" autocomplete="off" placeholder="e.g. The Smith family"></div><div><label class="f" for="people">People on the plan</label><input type="tel" inputmode="numeric" id="people" placeholder="1"></div></div>
+    <div class="row"><div><label class="f" for="people">People on the plan</label><input type="tel" inputmode="numeric" id="people" placeholder="1"></div><div></div></div>
   </section>
 
   <section class="panel">
@@ -171,9 +171,18 @@
 
 <script>
 (function(){
-  var KEY='ml-care-card-v1';
-  var F=['name','people','me_doc','me_doc_ph','sp_doc','sp_doc_ph','kid_doc','kid_doc_ph','urgent','urgent_ph','hosp','hosp_ph','pharm','pharm_ph','dent','dent_ph','agent','agent_ph'];
-  var $=function(id){ return document.getElementById(id); };
+  var BASE='ml-care-card-v1', $=function(id){ return document.getElementById(id); };
+  /* The link (#c=<base64url JSON>) says WHICH card this is (i) and what to start it with: from MyPopPro {a,p,n,d,md,sd,kd},
+     or a whole filled-in card shared back {f:{field:value}, d}. Each card id is saved separately on this device, so an
+     agent filling cards for several clients never mixes them up. After the # = never sent to the server. */
+  function b64d(b){ b=b.replace(/-/g,'+').replace(/_/g,'/'); while(b.length%4) b+='='; return JSON.parse(decodeURIComponent(escape(atob(b)))); }
+  function b64e(o){ return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); }
+  var J=null; try{ var m=/[#&]c=([A-Za-z0-9_-]+)/.exec(location.hash||''); if(m) J=b64d(m[1]); }catch(e){ J=null; }
+  function newId(){ return Math.random().toString(36).slice(2,10); }
+  var CID=(J&&J.i)?String(J.i).replace(/[^A-Za-z0-9]/g,'').slice(0,24):'';
+  if(!CID){ try{ CID=localStorage.getItem(BASE+':default')||''; if(!CID){ CID=newId(); localStorage.setItem(BASE+':default',CID); } }catch(e){ CID=newId(); } }
+  var KEY=BASE+':'+CID, LINK_T=0;   /* when the last shared card was applied: a NEWER shared card replaces this one */
+  var F=['people','me_doc','me_doc_ph','sp_doc','sp_doc_ph','kid_doc','kid_doc_ph','urgent','urgent_ph','hosp','hosp_ph','pharm','pharm_ph','dent','dent_ph','agent','agent_ph'];
   var esc=function(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); };
   var val=function(id){ return String(($(id)||{}).value||'').trim(); };
   function phone(v){ var d=String(v||'').replace(/\D/g,''); if(d.length===11&&d[0]==='1') d=d.slice(1); return d.length===10?d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6):String(v||'').trim(); }
@@ -189,8 +198,8 @@
     add('My agent','agent','agent_ph'); return out; }
   function fixed(){ var f=FIXED.slice(); if($('has_dental').checked) f.push(['Dental network','Careington','800-290-0424']); return f; }
 
-  function cardsHTML(){ var E=entries(), nm=val('name'), dense=E.length>7?' dense':'';
-    var front='<div class="wc'+dense+'"><div class="hd"><b>My care card</b><span>'+esc(nm||'First Health network')+'</span></div>'
+  function cardsHTML(){ var E=entries(), dense=E.length>7?' dense':'';
+    var front='<div class="wc'+dense+'"><div class="hd"><b>My care card</b><span>First Health network</span></div>'
       +(E.length?E.map(function(e){ return '<div class="ln"><i>'+esc(e[0])+'</i><span>'+esc(e[1])+'</span><em>'+esc(e[2])+'</em></div>'; }).join('')
         :'<div class="empty">Fill in your doctor, urgent care and hospital above — they print here.</div>')
       +'<div class="ft">Confirm a provider is in network before your visit.</div></div>';
@@ -199,11 +208,13 @@
       +'<div class="ft">Front desk: “I have the ManhattanLife Affordable Choice plan on the First Health network.” Not an insurance ID card.</div></div>';
     return front+back; }
 
-  function plainText(){ var E=entries(), nm=val('name'), L=[];
-    L.push('My care card'+(nm?' — '+nm:'')+' (ManhattanLife Affordable Choice)');
+  function shareLink(){ var f={}; F.forEach(function(k){ var v=val(k); if(v) f[k]=v; }); var o={i:CID,f:f,t:Date.now()}; if($('has_dental').checked) o.d=1;
+    return location.origin+location.pathname+'#c='+b64e(o); }
+  function plainText(){ var E=entries(), L=[];
+    L.push('My care card (ManhattanLife Affordable Choice)');
     E.forEach(function(e){ L.push(e[0]+': '+[e[1],e[2]].filter(Boolean).join(' · ')); });
     L.push(''); fixed().forEach(function(x){ L.push(x[0]+': '+x[1]+' · '+x[2]); });
-    L.push('Find in-network providers: providerlocator.firsthealth.com'); return L.join('\n'); }
+    L.push('Find in-network providers: providerlocator.firsthealth.com'); L.push(''); L.push('Open, save or print this card: '+shareLink()); return L.join('\n'); }
 
   /* one card per person on the plan, plus a spare (Jesse, 18 Oct); capped so a typo can't print 50 pages */
   function copies(){ var n=parseInt(val('people'),10); if(!(n>0)) n=1; return Math.min(n,10)+1; }
@@ -212,10 +223,21 @@
     $('printCards').innerHTML=new Array(n+1).join('<div class="pair">'+h+'</div>');
     $('textBtn').href='sms:?&body='+encodeURIComponent(plainText()); }
 
-  function save(){ try{ var o={has_dental:$('has_dental').checked}; F.forEach(function(k){ o[k]=val(k); }); localStorage.setItem(KEY,JSON.stringify(o)); }catch(e){} }
+  function save(){ try{ var o={has_dental:$('has_dental').checked,_t:LINK_T}; F.forEach(function(k){ o[k]=val(k); }); localStorage.setItem(KEY,JSON.stringify(o)); }catch(e){} }
   function load(){ var o=null; try{ o=JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){}
     if(o){ F.forEach(function(k){ if(o[k]!=null&&$(k)) $(k).value=o[k]; }); $('has_dental').checked=!!o.has_dental; }
-    /* an agent can send ?agent=Name&phone=5551234567 so their details are already on the card */
+    /* keep the address on this card's link, so a bookmark or a refresh opens the same card */
+    try{ if(!J||!J.i) history.replaceState(null,'',location.pathname+location.search+'#c='+b64e({i:CID})); }catch(e){}
+    /* Sent from MyPopPro: #c=<base64url JSON> {a:agent, p:phone, n:people, d:dental, md/sd/kd: doctors the agent
+       verified in network}. After the # so it never reaches the server. It fills only boxes that are still empty, so
+       re-opening the link never undoes the client's own edits. */
+    var fresh=!!(J&&J.f&&+J.t&&!(o&&+o._t>=+J.t));   /* a card sent later than the one saved here wins */
+    if(fresh){ F.forEach(function(k){ if($(k)) $(k).value=''; }); $('has_dental').checked=false; LINK_T=+J.t; o=null; } else if(o&&o._t) LINK_T=+o._t;
+    if(J&&!o){ var fill=function(id,v){ if(v!=null&&String(v).trim()&&!val(id)&&$(id)) $(id).value=id.slice(-3)==='_ph'?phone(v):String(v); }, f=J.f||{};
+      Object.keys(f).forEach(function(k){ if(F.indexOf(k)>=0) fill(k,f[k]); });
+      fill('agent',J.a); fill('agent_ph',J.p); fill('people',J.n?String(J.n):''); fill('me_doc',J.md); fill('sp_doc',J.sd); fill('kid_doc',J.kd);
+      if(J.d) $('has_dental').checked=true; }
+    /* an agent can also send ?agent=Name&phone=5551234567 by hand */
     try{ var q=new URLSearchParams(location.search); if(q.get('agent')&&!val('agent')) $('agent').value=q.get('agent'); if(q.get('phone')&&!val('agent_ph')) $('agent_ph').value=phone(q.get('phone')); if(q.get('people')&&!val('people')) $('people').value=String(parseInt(q.get('people'),10)||''); }catch(e){} }
   function toast(t){ var el=$('toast'); el.textContent=t; el.classList.add('on'); setTimeout(function(){ el.classList.remove('on'); },1600); }
 
@@ -227,7 +249,7 @@
     var done=function(){ toast('Copied — paste it into your Notes app'); };
     if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done,function(){ fallback(t); done(); }); else { fallback(t); done(); } };
   function fallback(t){ var a=document.createElement('textarea'); a.value=t; a.style.position='fixed'; a.style.opacity='0'; document.body.appendChild(a); a.select(); try{ document.execCommand('copy'); }catch(e){} a.remove(); }
-  $('clearBtn').onclick=function(){ if(!confirm('Clear everything on this card?')) return; F.forEach(function(k){ if($(k)) $(k).value=''; }); $('has_dental').checked=false; try{ localStorage.removeItem(KEY); }catch(e){} load(); render(); };
+  $('clearBtn').onclick=function(){ if(!confirm('Clear everything on this card?')) return; F.forEach(function(k){ if($(k)) $(k).value=''; }); $('has_dental').checked=false; try{ localStorage.removeItem(KEY); }catch(e){} J=null; LINK_T=0; load(); render(); save(); };
 })();
 </script>
 </body>
