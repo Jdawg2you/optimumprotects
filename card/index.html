@@ -8,8 +8,9 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="My Care Card — where to go, who to call">
 <meta property="og:description" content="Your in-network doctor, urgent care, hospital and the numbers you need, on one wallet card.">
-<meta name="theme-color" content="#0F2A4A">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F2A4A'/%3E%3Cpath d='M28 14h8v14h14v8H36v14h-8V36H14v-8h14z' fill='%23fff'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!--
@@ -19,17 +20,19 @@
   Optional link prefill for agents: ?agent=Name&phone=5551234567
 -->
 <style>
-  :root{ --navy:#0F2A4A; --navy-2:#1E4673; --sky:#EAF1F8; --ink:#14202E; --muted:#5B6878; --line:#D8E1EA; --bg:#F5F8FB; --card:#fff; --green:#1F7A4D; --amber:#8A5A00; }
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --ink:#E8EEF5; --muted:#A3B1C2; --line:#2B3A4C; --bg:#0D1622; --card:#142132; --sky:#18293D; } }
-  :root[data-theme="dark"]{ --ink:#E8EEF5; --muted:#A3B1C2; --line:#2B3A4C; --bg:#0D1622; --card:#142132; --sky:#18293D; }
+  :root{ --navy:#006B66; --navy-2:#00857E; --teal:#00A9A1; --sky:#E8F6F5; --ink:#14202E; --muted:#5B6878; --line:#D8E1EA; --bg:#F5F8FB; --card:#fff; --green:#1F7A4D; --amber:#8A5A00; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --ink:#E8EEF5; --muted:#A3B1C2; --line:#2B3A4C; --bg:#0D1622; --card:#142132; --sky:#14302E; } }
+  :root[data-theme="dark"]{ --ink:#E8EEF5; --muted:#A3B1C2; --line:#2B3A4C; --bg:#0D1622; --card:#142132; --sky:#14302E; }
   *{box-sizing:border-box}
+  [hidden]{display:none!important}   /* .num is display:flex, which would otherwise show a hidden row (the dental number) */
   body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;-webkit-text-size-adjust:100%}
-  header{background:var(--navy);color:#fff;padding:22px 16px 26px}
+  header{background:#fff;color:#14202E;padding:16px 16px 18px;border-bottom:4px solid var(--teal)}
+  header .logo{display:block;width:260px;max-width:70%;height:auto;margin:0 0 12px}
   .wrap{max-width:760px;margin:0 auto;padding:0 16px}
   header .wrap{padding:0}
-  .carrier{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+  .carrier{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#006B66}
   h1{font-size:28px;line-height:1.15;margin:6px 0 6px;font-weight:800}
-  header p{margin:0;opacity:.9;max-width:560px}
+  header p{margin:0;color:#4B5866;max-width:560px}
   main{padding:18px 0 40px}
   .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:0 0 14px}
   .panel h2{font-size:17px;margin:0 0 2px}
@@ -40,7 +43,7 @@
   input[type=text],input[type=tel]{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink)}
   input:focus{outline:2px solid var(--navy-2);outline-offset:1px}
   .find{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--navy-2);text-decoration:none;margin:0 0 12px}
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .find{color:#8DB8E8} }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .find{color:#5FD3CC} }
   .who{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy-2);margin:12px 0 6px}
   .chk{display:flex;gap:8px;align-items:center;font-weight:600;margin:4px 0 10px}
   .chk input{width:20px;height:20px}
@@ -51,7 +54,7 @@
   .say{font-size:14px;color:var(--muted);margin:10px 0 0}
   .actions{position:sticky;bottom:0;background:linear-gradient(transparent,var(--bg) 30%);padding:18px 0 14px;display:flex;gap:10px;flex-wrap:wrap}
   .btn{flex:1 1 150px;font:inherit;font-weight:700;font-size:16px;border-radius:11px;padding:13px 16px;cursor:pointer;border:1px solid var(--navy);background:var(--card);color:var(--navy);text-align:center;text-decoration:none}
-  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .btn{color:#E8EEF5;border-color:#8DB8E8} }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .btn{color:#E8EEF5;border-color:#5FD3CC} :root:not([data-theme="light"]) .btn.primary{color:#fff} }
   .btn.primary{background:var(--navy);color:#fff}
   @media (max-width:560px){ .actions{flex-wrap:nowrap;gap:6px;padding:12px 0 10px} .btn{flex:1 1 0;font-size:14px;padding:11px 6px} }
   @media (max-width:420px){ #preview .wc{zoom:.88} }
@@ -64,11 +67,14 @@
 
   /* the wallet card itself: standard card size, front + back */
   .wc{width:3.375in;height:2.125in;border:1px dashed #9AA8B8;border-radius:.12in;padding:.1in .12in;background:#fff;color:#0F1A26;overflow:hidden;font-family:Inter,Arial,sans-serif;display:flex;flex-direction:column}
-  .wc .hd{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid #0F2A4A;padding-bottom:2px;margin-bottom:3px}
-  .wc .hd b{font-size:8pt;color:#0F2A4A;letter-spacing:.04em;text-transform:uppercase}
+  .wc .hd{display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #00A9A1;padding-bottom:2px;margin-bottom:3px;gap:4px}
+  .wc .hd img.st{height:.26in;width:auto}
+  .wc .hd img.lg{height:.34in;width:auto}
+  .wc .hd .grow{flex:1}
+  .wc .hd b{font-size:8pt;color:#006B66;letter-spacing:.04em;text-transform:uppercase}
   .wc .hd span{font-size:6.5pt;color:#5B6878}
   .wc .ln{font-size:7pt;line-height:1.28;display:flex;gap:4px}
-  .wc .ln i{font-style:normal;font-weight:700;color:#0F2A4A;min-width:.72in;flex:none}
+  .wc .ln i{font-style:normal;font-weight:700;color:#006B66;min-width:.72in;flex:none}
   .wc .ln em{font-style:normal;white-space:nowrap;margin-left:auto;padding-left:4px}
   .wc.dense .ln{font-size:6.2pt;line-height:1.2}
   .wc .ft{margin-top:auto;font-size:5.6pt;color:#5B6878}
@@ -90,7 +96,8 @@
 <body>
 <header>
   <div class="wrap">
-    <div class="carrier">ManhattanLife · Affordable Choice</div>
+    <img class="logo" src="ml-logo.png" alt="ManhattanLife" width="687" height="291">
+    <div class="carrier">Affordable Choice members</div>
     <h1>My Care Card</h1>
     <p>Where to go and who to call — on one card for your wallet, your phone, or your family. Fill in what you have; blanks are left off.</p>
   </div>
@@ -162,7 +169,7 @@
 
   <footer>
     <p>What you type stays on this phone or computer — it isn't sent anywhere. <button class="clear" type="button" id="clearBtn">Clear everything</button></p>
-    <p>This card is a convenience, not an insurance ID card, and not issued by ManhattanLife. Always confirm a provider is in network before your visit.</p>
+    <p>Provided by your licensed insurance agent for ManhattanLife Affordable Choice members. This card is a convenience — not an insurance ID card, and not issued by ManhattanLife. Always confirm a provider is in network before your visit.</p>
   </footer>
 </main>
 
@@ -199,11 +206,11 @@
   function fixed(){ var f=FIXED.slice(); if($('has_dental').checked) f.push(['Dental network','Careington','800-290-0424']); return f; }
 
   function cardsHTML(){ var E=entries(), dense=E.length>7?' dense':'';
-    var front='<div class="wc'+dense+'"><div class="hd"><b>My care card</b><span>First Health network</span></div>'
+    var front='<div class="wc'+dense+'"><div class="hd"><img class="st" src="ml-statue.png" alt=""><b class="grow">My care card</b><span>First Health network</span></div>'
       +(E.length?E.map(function(e){ return '<div class="ln"><i>'+esc(e[0])+'</i><span>'+esc(e[1])+'</span><em>'+esc(e[2])+'</em></div>'; }).join('')
         :'<div class="empty">Fill in your doctor, urgent care and hospital above — they print here.</div>')
       +'<div class="ft">Confirm a provider is in network before your visit.</div></div>';
-    var X=fixed(), back='<div class="wc'+(X.length>4?' dense':'')+'"><div class="hd"><b>ManhattanLife</b><span>Affordable Choice</span></div>'
+    var X=fixed(), back='<div class="wc'+(X.length>4?' dense':'')+'"><div class="hd"><img class="lg" src="ml-logo.png" alt="ManhattanLife"><span>Affordable Choice</span></div>'
       +X.map(function(x){ return '<div class="ln"><i>'+esc(x[0])+'</i><span>'+esc(x[1])+'</span><em>'+esc(x[2])+'</em></div>'; }).join('')
       +'<div class="ft">Front desk: “I have the ManhattanLife Affordable Choice plan on the First Health network.” Not an insurance ID card.</div></div>';
     return front+back; }
