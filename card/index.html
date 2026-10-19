@@ -150,8 +150,7 @@
     <div class="nums">
       <div class="num"><span><b>Find a doctor</b> — First Health · client code FHIND</span><a href="tel:+18002265116">800-226-5116</a></div>
       <div class="num"><span><b>Medical bill over $2,500?</b> Call CareGuide before you pay</span><a href="tel:+14699022267">469-902-2267</a></div>
-      <div class="num"><span><b>24/7 telehealth</b> — EasyCare2go · Group ID mlins2023</span><a href="tel:+18667313017">866-731-3017</a></div>
-      <div class="num"><span><b>Prescription discounts</b> — RxEDO · findlowrx.com</span><a href="tel:+18888797336">888-879-7336</a></div>
+      <div class="num"><span><b>24/7 telehealth &amp; Rx discounts</b> — EasyCare2go · Group ID mlins2023</span><a href="tel:+18667313017">866-731-3017</a></div>
       <div class="num" id="dentNum" hidden><span><b>Dental network</b> — Careington</span><a href="tel:+18002900424">800-290-0424</a></div>
     </div>
     <p class="say">At the front desk, say: “I have the ManhattanLife Affordable Choice plan. Do you take the First Health network?”</p>
@@ -197,7 +196,7 @@
   function phone(v){ var d=String(v||'').replace(/\D/g,''); if(d.length===11&&d[0]==='1') d=d.slice(1); return d.length===10?d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6):String(v||'').trim(); }
 
   /* the fixed numbers, from the ManhattanLife resource page */
-  var FIXED=[['Find a doctor','First Health · code FHIND','800-226-5116'],['Bill over $2,500','CareGuide — call first','469-902-2267'],['Telehealth 24/7','EasyCare2go · grp mlins2023','866-731-3017'],['Rx discounts','RxEDO · findlowrx.com','888-879-7336']];
+  var FIXED=[['Find a doctor','First Health · code FHIND','800-226-5116'],['Bill over $2,500','CareGuide — call first','469-902-2267'],['Telehealth & Rx','EasyCare2go · grp mlins2023','866-731-3017']];
 
   /* only what's filled in: [label, name, phone] */
   function entries(){ var out=[], add=function(lab,n,p){ n=val(n); p=phone(val(p)); if(n||p) out.push([lab,n,p]); };
