@@ -77,6 +77,8 @@
   .wc .ln i{font-style:normal;font-weight:700;color:#006B66;min-width:.72in;flex:none}
   .wc .ln em{font-style:normal;white-space:nowrap;margin-left:auto;padding-left:4px}
   .wc.dense .ln{font-size:6.2pt;line-height:1.2}
+  .wc .nudge{margin-top:auto;font-size:6.4pt;line-height:1.3;color:#006B66;font-weight:700;border-top:1px dotted #9FD9D5;padding-top:2px}
+  .wc .nudge+.ft{margin-top:2px}
   .wc .ft{margin-top:auto;font-size:5.6pt;color:#5B6878}
   .wc .empty{font-size:7pt;color:#7A8796;margin:auto 0;text-align:center}
   @media print{
@@ -188,7 +190,7 @@
   function newId(){ return Math.random().toString(36).slice(2,10); }
   var CID=(J&&J.i)?String(J.i).replace(/[^A-Za-z0-9]/g,'').slice(0,24):'';
   if(!CID){ try{ CID=localStorage.getItem(BASE+':default')||''; if(!CID){ CID=newId(); localStorage.setItem(BASE+':default',CID); } }catch(e){ CID=newId(); } }
-  var KEY=BASE+':'+CID, LINK_T=0;   /* when the last shared card was applied: a NEWER shared card replaces this one */
+  var KEY=BASE+':'+CID, LINK_T=0, X={};   /* X: the pocket reminder from MyPopPro - g (not on the plan yet), lw (levels lowered), rm (review month) */   /* when the last shared card was applied: a NEWER shared card replaces this one */
   var F=['people','me_doc','me_doc_ph','sp_doc','sp_doc_ph','kid_doc','kid_doc_ph','urgent','urgent_ph','hosp','hosp_ph','pharm','pharm_ph','dent','dent_ph','agent','agent_ph'];
   var esc=function(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); };
   var val=function(id){ return String(($(id)||{}).value||'').trim(); };
@@ -205,6 +207,14 @@
     add('My agent','agent','agent_ph'); return out; }
   function fixed(){ var f=FIXED.slice(); if($('has_dental').checked) f.push(['Dental network','Careington','800-290-0424']); return f; }
 
+  /* one short line: what isn't on the plan yet (or that levels can go up), who to ask, and the review month */
+  var GAPNAME={dvh:'dental',lb:'life insurance',chas:'cancer & heart coverage'};
+  function nudges(){ var g=(X.g||[]).filter(function(k){ return !(k==='dvh'&&$('has_dental').checked); }).map(function(k){ return GAPNAME[k]; }).filter(Boolean);
+    var who=(val('agent').split(/\s+/)[0]||'your agent')+(val('agent_ph')?' '+phone(val('agent_ph')):''), L=[];
+    if(g.length) L.push('Not on your plan yet: '+g.join(' · ')+' — ask '+who);
+    else if(X.lw) L.push('Want more coverage? Your levels can be raised — ask '+who);
+    if(X.rm) L.push('Your plan review: '+X.rm);
+    return L; }
   function cardsHTML(){ var E=entries(), dense=E.length>7?' dense':'';
     var front='<div class="wc'+dense+'"><div class="hd"><img class="st" src="ml-statue.png" alt=""><b class="grow">My care card</b><span>First Health network</span></div>'
       +(E.length?E.map(function(e){ return '<div class="ln"><i>'+esc(e[0])+'</i><span>'+esc(e[1])+'</span><em>'+esc(e[2])+'</em></div>'; }).join('')
@@ -212,16 +222,17 @@
       +'<div class="ft">Confirm a provider is in network before your visit.</div></div>';
     var X=fixed(), back='<div class="wc'+(X.length>4?' dense':'')+'"><div class="hd"><img class="lg" src="ml-logo.png" alt="ManhattanLife"><span>Affordable Choice</span></div>'
       +X.map(function(x){ return '<div class="ln"><i>'+esc(x[0])+'</i><span>'+esc(x[1])+'</span><em>'+esc(x[2])+'</em></div>'; }).join('')
+      +(nudges().length?'<div class="nudge">'+nudges().map(esc).join('<br>')+'</div>':'')
       +'<div class="ft">Front desk: “I have the ManhattanLife Affordable Choice plan on the First Health network.” Not an insurance ID card.</div></div>';
     return front+back; }
 
-  function shareLink(){ var f={}; F.forEach(function(k){ var v=val(k); if(v) f[k]=v; }); var o={i:CID,f:f,t:Date.now()}; if($('has_dental').checked) o.d=1;
+  function shareLink(){ var f={}; F.forEach(function(k){ var v=val(k); if(v) f[k]=v; }); var o={i:CID,f:f,t:Date.now()}; if($('has_dental').checked) o.d=1; if(X.g&&X.g.length) o.g=X.g; if(X.lw) o.lw=1; if(X.rm) o.rm=X.rm;
     return location.origin+location.pathname+'#c='+b64e(o); }
   function plainText(){ var E=entries(), L=[];
     L.push('My care card (ManhattanLife Affordable Choice)');
     E.forEach(function(e){ L.push(e[0]+': '+[e[1],e[2]].filter(Boolean).join(' · ')); });
     L.push(''); fixed().forEach(function(x){ L.push(x[0]+': '+x[1]+' · '+x[2]); });
-    L.push('Find in-network providers: providerlocator.firsthealth.com'); L.push(''); L.push('Open, save or print this card: '+shareLink()); return L.join('\n'); }
+    L.push('Find in-network providers: providerlocator.firsthealth.com'); nudges().forEach(function(n){ L.push(n); }); L.push(''); L.push('Open, save or print this card: '+shareLink()); return L.join('\n'); }
 
   /* one card per adult on the plan (18 and over), plus a spare (Jesse, 18 Oct); capped so a typo can't print 50 pages */
   function copies(){ var n=parseInt(val('people'),10); if(!(n>0)) n=1; return Math.min(n,10)+1; }
@@ -230,9 +241,10 @@
     $('printCards').innerHTML=new Array(n+1).join('<div class="pair">'+h+'</div>');
     $('textBtn').href='sms:?&body='+encodeURIComponent(plainText()); }
 
-  function save(){ try{ var o={has_dental:$('has_dental').checked,_t:LINK_T}; F.forEach(function(k){ o[k]=val(k); }); localStorage.setItem(KEY,JSON.stringify(o)); }catch(e){} }
+  function save(){ try{ var o={has_dental:$('has_dental').checked,_t:LINK_T,x:X}; F.forEach(function(k){ o[k]=val(k); }); localStorage.setItem(KEY,JSON.stringify(o)); }catch(e){} }
   function load(){ var o=null; try{ o=JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){}
-    if(o){ F.forEach(function(k){ if(o[k]!=null&&$(k)) $(k).value=o[k]; }); $('has_dental').checked=!!o.has_dental; }
+    if(o){ F.forEach(function(k){ if(o[k]!=null&&$(k)) $(k).value=o[k]; }); $('has_dental').checked=!!o.has_dental; if(o.x) X=o.x; }
+    if(J&&(J.g||J.lw||J.rm)) X={g:J.g||[],lw:J.lw?1:0,rm:J.rm||''};
     /* keep the address on this card's link, so a bookmark or a refresh opens the same card */
     try{ if(!J||!J.i) history.replaceState(null,'',location.pathname+location.search+'#c='+b64e({i:CID})); }catch(e){}
     /* Sent from MyPopPro: #c=<base64url JSON> {a:agent, p:phone, n:people, d:dental, md/sd/kd: doctors the agent
