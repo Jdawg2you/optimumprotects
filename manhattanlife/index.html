@@ -147,6 +147,18 @@
   .saveme strong{display:block;font-family:var(--display);font-size:1.05rem}
   .saveme span{display:block;color:var(--muted);font-size:.9rem;margin-top:.2rem}
   .saveme button{cursor:pointer;font-family:var(--ui)}
+  .service{background:var(--sage-deep);color:#F1F5EE;border-radius:28px;padding:2.6rem}
+  .service h2,.service .kicker{color:#FFFFFF}
+  .service .kicker{letter-spacing:.2em}
+  .service .lead{color:#DCE5D7}
+  .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+  .svc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:1.2rem 1.4rem}
+  .svc-lab{font-family:var(--ui);font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft)}
+  .svc-val{font-family:var(--display);font-size:1.45rem;margin:.3rem 0 .1rem;word-break:break-word}
+  .svc .btns{display:flex;gap:.5rem;margin-top:.9rem;flex-wrap:wrap}
+  .svc .btn.ghost{color:#FFFFFF;border-color:var(--gold-soft)}
+  .svc .btn.ghost:hover{background:var(--gold);color:#2b2205;border-color:var(--gold)}
+  .svc-note{color:#DCE5D7;font-size:.9rem;margin:1.25rem 0 0}
   .wellcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.4rem 1.6rem;margin-top:1rem}
   .wellhead{display:flex;gap:1.5rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
   .wellcard .use{font-family:var(--ui);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.7rem;color:var(--gold-deep);margin-bottom:.3rem}
@@ -201,6 +213,8 @@
   @media (max-width:820px){
     .hero,.grid2,.grid3,.vendors,.contact .wrap,.vcard{grid-template-columns:1fr}
     .vcard .qr{width:110px}
+    .svc-grid{grid-template-columns:1fr}
+    .service{padding:1.9rem 1.4rem;border-radius:22px;margin:0 .6rem}
     section.tint,section.sage{padding:1.9rem 1.4rem;border-radius:22px}
     .contact{margin:0 .6rem}
     .heroglobe{width:250px;right:-70px;top:-50px}
@@ -251,7 +265,7 @@
 <nav class="jump" aria-label="Sections">
   <div class="jumpwrap">
   <div class="wrap" id="jumpscroll">
-    <a href="#start">Start here</a><a href="#how">How it works</a><a href="#doctor">Find a doctor</a><a href="#rx">Prescriptions</a><a href="#dental">Dental</a><a href="#imaging">Imaging &amp; labs</a><a href="#call">Who to call</a><a href="#wellness">Wellness</a><a href="#more">Life &amp; retirement</a><a href="#jesse">Reach Jesse</a>
+    <a href="#start">Start here</a><a href="#how">How it works</a><a href="#doctor">Find a doctor</a><a href="#rx">Prescriptions</a><a href="#dental">Dental</a><a href="#imaging">Imaging &amp; labs</a><a href="#call">Who to call</a><a href="#wellness">Wellness</a><a href="#service">Customer service</a><a href="#more">Life &amp; retirement</a><a href="#jesse">Reach Jesse</a>
   </div>
   <div class="jumphint" id="jumphint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
   </div>
@@ -402,7 +416,7 @@
   <h2>Who to call.</h2>
   <p class="lead">Call me first if you're not sure. But these are the people who can actually do things — process a claim, negotiate a bill, book a visit — and every one of them is a tap away.</p>
   <div class="vendors">
-    <div class="vendor tealchip"><div><div class="use">Your insurer</div><h3>ManhattanLife</h3><a href="https://clients.manhattanlife.com" target="_blank" rel="noopener">clients.manhattanlife.com</a><small>Policy documents, ID cards, claims, payments, banking changes. Claims: Easy Upload app, or fax 713-821-6518, or mail P.O. Box 925309, Houston TX 77292-5309.</small></div><div class="qr" data-qr="https://clients.manhattanlife.com"></div></div>
+    <div class="vendor tealchip"><div><div class="use">Your insurer</div><h3>ManhattanLife</h3><a href="https://clients.manhattanlife.com" target="_blank" rel="noopener">clients.manhattanlife.com</a><br><a href="tel:+18008777792">800-877-7792</a><br><a href="mailto:afcservice@manhattanlife.com">afcservice@manhattanlife.com</a><small>Policy documents, ID cards, claims, payments, banking changes. Claims: Easy Upload app, or fax 713-821-6518, or mail P.O. Box 925309, Houston TX 77292-5309.</small><a class="jumpto" href="#service">Customer service details ↓</a></div><div class="qr" data-qr="https://clients.manhattanlife.com"></div></div>
     <div class="vendor"><div><div class="use">Bill advocate</div><h3>CareGuide</h3><a href="tel:+14699022267">469-902-2267</a><br><a href="mailto:members@cgasaves.com">members@cgasaves.com</a><br><a href="https://www.cgasaves.com/manhattanlifemembers" target="_blank" rel="noopener">Secure bill upload</a><small>Any bill over $2,500 — call before you pay. Mon–Fri, 8 AM–5 PM Central; upload a case anytime, or ask for a callback. Included with your plan at no extra cost.</small>
       <details class="more"><summary>When to call CareGuide</summary>
         <h4>Before care</h4>
@@ -462,6 +476,25 @@
       <div class="card"><h3>Not sure which option to pick?</h3><p style="color:var(--muted)">Text me your current medication and dose before you check out. Choosing the wrong patient type is the one mistake that costs people money here, and it takes thirty seconds to avoid.</p><a class="btn ghost" href="sms:+14438951832?body=Hi%20Jesse%2C%20quick%20DirectionRx%20question.">Text Jesse</a><p style="margin:1rem 0 0"><small style="color:var(--muted)">Compounded medications are not FDA-approved products. Statements about these therapies have not been evaluated by the FDA and are not intended to diagnose, treat, cure, or prevent disease.</small></p></div>
     </details>
   </div>
+</section>
+
+<section id="service" class="service">
+  <div class="kicker">Customer service</div>
+  <h2>Questions about your plan?</h2>
+  <p class="lead">Call or email ManhattanLife customer service about a claim, a bill, your ID card, a payment, or a change that might affect your coverage. Not sure, or not getting anywhere? Call me instead.</p>
+  <div class="svc-grid">
+    <div class="svc">
+      <div class="svc-lab">Phone</div>
+      <div class="svc-val">800-877-7792</div>
+      <div class="btns"><a class="btn" href="tel:+18008777792">Call</a><button class="btn ghost copy" type="button" data-copy="800-877-7792">Copy</button></div>
+    </div>
+    <div class="svc">
+      <div class="svc-lab">Email</div>
+      <div class="svc-val">afcservice@manhattanlife.com</div>
+      <div class="btns"><a class="btn" href="mailto:afcservice@manhattanlife.com">Email</a><button class="btn ghost copy" type="button" data-copy="afcservice@manhattanlife.com">Copy</button></div>
+    </div>
+  </div>
+  <p class="svc-note">Have your policy number ready — it's in the portal, on your ID card, and on every letter they send.</p>
 </section>
 
 <section id="more" class="more">
@@ -531,6 +564,21 @@
     bar.addEventListener('scroll',check,{passive:true});
     window.addEventListener('resize',check);
     check();
+  })();
+  // copy buttons on the customer service panel
+  (function(){
+    document.querySelectorAll('.copy').forEach(function(b){
+      b.addEventListener('click',function(){
+        var text=b.getAttribute('data-copy'), done=function(){ var old=b.textContent; b.textContent='Copied'; setTimeout(function(){ b.textContent=old; },1600); };
+        if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done,fallback); } else { fallback(); }
+        function fallback(){
+          var t=document.createElement('textarea'); t.value=text; t.setAttribute('readonly',''); t.style.position='absolute'; t.style.left='-9999px';
+          document.body.appendChild(t); t.select();
+          try{ document.execCommand('copy'); done(); }catch(e){ b.textContent='Copy failed'; setTimeout(function(){ b.textContent='Copy'; },1600); }
+          document.body.removeChild(t);
+        }
+      });
+    });
   })();
   // add to home screen
   (function(){
