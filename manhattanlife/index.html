@@ -147,15 +147,16 @@
   .saveme strong{display:block;font-family:var(--display);font-size:1.05rem}
   .saveme span{display:block;color:var(--muted);font-size:.9rem;margin-top:.2rem}
   .saveme button{cursor:pointer;font-family:var(--ui)}
-  .service{background:var(--sage-deep);color:#F1F5EE;border-radius:28px;padding:2.6rem}
+  .service{background:var(--sage-deep);color:#F1F5EE;border-radius:28px;padding:2.6rem;margin:1.5rem 0}
   .service h2,.service .kicker{color:#FFFFFF}
   .service .kicker{letter-spacing:.2em}
   .service .lead{color:#DCE5D7}
-  .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
-  .svc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:1.2rem 1.4rem}
+  .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:1.75rem;align-items:stretch}
+  .svc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.25);border-radius:18px;padding:1.3rem 1.5rem;display:flex;flex-direction:column}
   .svc-lab{font-family:var(--ui);font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft)}
-  .svc-val{font-family:var(--display);font-size:1.45rem;margin:.3rem 0 .1rem;word-break:break-word}
-  .svc .btns{display:flex;gap:.5rem;margin-top:.9rem;flex-wrap:wrap}
+  .svc-val{font-family:var(--display);font-size:1.5rem;margin:.35rem 0 .1rem;line-height:1.2;overflow-wrap:normal}
+  .svc-val.mail{font-size:1.18rem;letter-spacing:.005em}
+  .svc .btns{display:flex;gap:.5rem;margin-top:auto;padding-top:1.1rem;flex-wrap:wrap}
   .svc .btn.ghost{color:#FFFFFF;border-color:var(--gold-soft)}
   .svc .btn.ghost:hover{background:var(--gold);color:#2b2205;border-color:var(--gold)}
   .svc-note{color:#DCE5D7;font-size:.9rem;margin:1.25rem 0 0}
@@ -214,7 +215,9 @@
     .hero,.grid2,.grid3,.vendors,.contact .wrap,.vcard{grid-template-columns:1fr}
     .vcard .qr{width:110px}
     .svc-grid{grid-template-columns:1fr}
-    .service{padding:1.9rem 1.4rem;border-radius:22px;margin:0 .6rem}
+    .service{padding:1.9rem 1.4rem;border-radius:22px;margin:1.1rem .6rem}
+    .svc-val{font-size:1.35rem}
+    .svc-val.mail{font-size:1.05rem}
     section.tint,section.sage{padding:1.9rem 1.4rem;border-radius:22px}
     .contact{margin:0 .6rem}
     .heroglobe{width:250px;right:-70px;top:-50px}
@@ -490,7 +493,7 @@
     </div>
     <div class="svc">
       <div class="svc-lab">Email</div>
-      <div class="svc-val">afcservice@manhattanlife.com</div>
+      <div class="svc-val mail">afcservice<wbr>@manhattanlife.com</div>
       <div class="btns"><a class="btn" href="mailto:afcservice@manhattanlife.com">Email</a><button class="btn ghost copy" type="button" data-copy="afcservice@manhattanlife.com">Copy</button></div>
     </div>
   </div>
