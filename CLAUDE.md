@@ -1,6 +1,6 @@
 # optimumprotects.com
 
-Client-facing site for Optimum Financial Solutions. Static HTML, no build step.
+Client-facing site for Wealth Builders Group LLC, dba Optimum. Static HTML, no build step.
 
 ## How it deploys
 - GitHub Pages serves `main` from the repo root. **Push = publish**, live a minute or two later.
