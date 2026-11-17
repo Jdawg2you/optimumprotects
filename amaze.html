@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amaze Health — Optimum</title>
+<meta name="description" content="Amaze Health: 24/7 virtual care for the whole family, one flat monthly membership, no fee per visit. Enroll through Jesse Stamm at Optimum.">
+<link rel="icon" href="/favicon.png" sizes="512x512">
+<link rel="icon" href="/favicon-32.png" sizes="32x32">
+<link rel="icon" href="/favicon-16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Optimum">
+<meta property="og:url" content="https://optimumprotects.com/amaze">
+<meta property="og:title" content="Amaze Health — care for the whole family, always on">
+<meta property="og:description" content="24/7 virtual care for you, your partner and your kids to 26. One flat membership, no fee per visit.">
+<meta property="og:image" content="https://optimumprotects.com/amaze-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Amaze Health through Optimum — healthcare for the whole family. One app. Always on.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.amaze-hero{background:var(--ivory);padding:76px 0 70px}
+.amaze-hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.amaze-hero .back{font-size:13px;font-weight:600;color:var(--gold-deep);display:block;margin-bottom:16px}
+.amaze-hero h1{font-size:clamp(38px,5vw,62px);margin:8px 0 18px}
+.amaze-hero .lead{font-size:18.5px;color:var(--gray);max-width:46ch;margin-bottom:28px}
+.amaze-hero .hero-cta{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+
+.memcard{background:var(--white);border:1px solid #efe6d4;border-radius:20px;padding:34px 32px;box-shadow:0 14px 40px rgba(26,23,18,.07)}
+.memcard .mc-tag{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+.memcard .price{font-family:var(--serif);font-size:58px;color:var(--charcoal);font-weight:700;line-height:1;margin:10px 0 2px}
+.memcard .price span{font-family:var(--sans);font-size:17px;font-weight:500;color:var(--gray)}
+.memcard .per{font-size:14.5px;color:var(--gray);margin-bottom:20px}
+.memcard ul{list-style:none;margin:0 0 24px}
+.memcard li{font-size:15px;color:var(--ink);padding-left:24px;position:relative;margin-bottom:11px;line-height:1.5}
+.memcard li:before{content:"◆";color:var(--gold);position:absolute;left:0;font-size:11px;top:4px}
+.memcard .pill{width:100%;text-align:center}
+.memcard .fine{font-size:12px;color:var(--gray);margin-top:14px;text-align:center;line-height:1.5}
+
+.inc{background:var(--white)}
+.inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.inc-item{background:var(--cream);border:1px solid #efe6d4;border-radius:14px;padding:22px 24px}
+.inc-item h3{font-size:17px;margin-bottom:6px}
+.inc-item p{font-size:14px;color:var(--gray);line-height:1.55}
+
+.advocate{background:var(--cream);padding:80px 0}
+.adv-grid{display:grid;grid-template-columns:260px 1fr;gap:46px;align-items:center}
+.adv-photo img{width:100%;height:auto;max-width:240px;aspect-ratio:1/1;object-fit:cover;border-radius:20px;display:block;border:1px solid #efe6d4}
+.advocate h2{font-size:clamp(28px,3.2vw,42px);margin:10px 0 16px}
+.advocate p{font-size:16.5px;color:var(--gray);max-width:54ch;margin-bottom:14px}
+
+.amz-note{background:var(--sage);padding:52px 0}
+.amz-note p{font-family:var(--serif);font-size:clamp(20px,2.4vw,29px);color:var(--sage-deep);max-width:800px;line-height:1.32}
+.amz-note .src{font-family:var(--sans);font-size:13.5px;color:#4a5a43;margin-top:16px;max-width:60ch;line-height:1.6}
+
+@media(max-width:900px){
+  .amaze-hero{padding:48px 0 52px}
+  .amaze-hero-grid{grid-template-columns:1fr;gap:38px}
+  .amaze-hero .lead{max-width:none}
+  .inc-grid{grid-template-columns:1fr}
+  .adv-grid{grid-template-columns:1fr;gap:28px;text-align:left}
+  .adv-photo img{max-width:180px}
+  .advocate{padding:56px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand" aria-label="Optimum — Health, Life, Retirement">
+      <img src="logo-horizontal.png" alt="Optimum — Health · Life · Retirement">
+    </a>
+    <nav class="menu">
+      <a href="index.html#how">How it works</a>
+      <a href="health.html">Health</a>
+      <a href="life.html">Life</a>
+      <a href="retirement.html">Retirement</a>
+      <a href="index.html#stories">About</a>
+      <a href="index.html#join">Join our team</a>
+    </nav>
+    <div class="nav-right">
+      <a href="tel:4079003122" class="phone">(407) 900-3122</a>
+      <a href="https://app.amazepbc.com/members/confirmaccess?rs=0&amp;activationcode=EMPOWERINS2&amp;referencecode=TM5YXYZA" class="pill" target="_blank" rel="noopener">Enroll</a>
+      <button class="hamb" aria-label="Menu" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+  <div class="wrap"><div class="mobile-menu" id="mm">
+    <a href="index.html#how">How it works</a><a href="health.html">Health</a><a href="life.html">Life</a><a href="retirement.html">Retirement</a>
+    <a href="index.html#stories">About</a><a href="index.html#join">Join our team</a><a href="index.html#quote">Get a Quote</a>
+  </div></div>
+</header>
+
+<section class="amaze-hero">
+  <div class="wrap">
+    <div class="amaze-hero-grid">
+      <div class="reveal">
+        <a href="health.html" class="back">← Health</a>
+        <span class="kicker">Virtual care membership</span>
+        <h1>Healthcare for the whole family. One app. Always on.</h1>
+        <p class="lead">Amaze Health puts a medical team in your pocket — day, night, weekend, holiday. Call, video, or message a real clinician without an appointment, a waiting room, or a fee at the end of the visit.</p>
+        <div class="hero-cta">
+          <a href="https://app.amazepbc.com/members/confirmaccess?rs=0&amp;activationcode=EMPOWERINS2&amp;referencecode=TM5YXYZA" class="pill" target="_blank" rel="noopener">Enroll in Amaze</a>
+          <a href="#included" class="pill-ghost">See what's included</a>
+        </div>
+      </div>
+      <div class="memcard reveal">
+        <div class="mc-tag">Membership</div>
+        <div class="price">$99<span>/month</span></div>
+        <div class="per">One flat price for the household.</div>
+        <ul>
+          <li>Covers you, your spouse or partner, and children up to age 26</li>
+          <li>No fee per visit, and no appointment needed</li>
+          <li>24/7 live support, in more than 80 languages</li>
+          <li>Renews monthly — cancel any time</li>
+        </ul>
+        <a href="https://app.amazepbc.com/members/confirmaccess?rs=0&amp;activationcode=EMPOWERINS2&amp;referencecode=TM5YXYZA" class="pill" target="_blank" rel="noopener">Enroll in Amaze</a>
+        <div class="fine">Amaze is a virtual care membership, not health insurance.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats" style="padding:58px 0">
+  <div class="stat-grid wrap">
+    <div class="stat reveal"><div class="n">24/7</div><div class="l">Live care, every day of the year</div></div>
+    <div class="stat reveal"><div class="n">$0</div><div class="l">Charged per visit</div></div>
+    <div class="stat reveal"><div class="n">40%+</div><div class="l">Fewer ER visits, as reported by Amaze</div></div>
+    <div class="stat reveal"><div class="n">80+</div><div class="l">Languages supported</div></div>
+  </div>
+</section>
+
+<section class="inc" id="included">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kicker">What's included</span><h2>Everyday care, and the help around it.</h2><p>One membership covers the medical side and the paperwork side — the part most virtual care leaves you to figure out alone.</p></div>
+    <div class="inc-grid">
+      <div class="inc-item reveal"><h3>Urgent care</h3><p>Sudden illness, injuries, infections — seen now, not in three days.</p></div>
+      <div class="inc-item reveal"><h3>Primary care</h3><p>Ongoing, routine care from a team that knows your history.</p></div>
+      <div class="inc-item reveal"><h3>Chronic conditions</h3><p>Day-to-day management for diabetes, blood pressure, asthma and more.</p></div>
+      <div class="inc-item reveal"><h3>Mental health</h3><p>Talk to someone when you need to, without a month-long wait.</p></div>
+      <div class="inc-item reveal"><h3>Prescriptions</h3><p>The medical team can prescribe, and send it to your pharmacy.</p></div>
+      <div class="inc-item reveal"><h3>Dental support</h3><p>Virtual guidance on dental pain and problems before you book a chair.</p></div>
+      <div class="inc-item reveal"><h3>Orthopedic support</h3><p>Virtual help with joints, backs, sprains and recovery questions.</p></div>
+      <div class="inc-item reveal"><h3>Weight management</h3><p>A plan and a clinician behind it, not an app on its own.</p></div>
+      <div class="inc-item reveal"><h3>Smoking cessation</h3><p>Support for quitting, with the medical side handled.</p></div>
+      <div class="inc-item reveal"><h3>Billing advocacy</h3><p>Got a medical bill that looks wrong? They take it on for you.</p></div>
+      <div class="inc-item reveal"><h3>Insurance support</h3><p>Coverage questions, and help finding the right specialist.</p></div>
+      <div class="inc-item reveal"><h3>Health education</h3><p>A library of videos and guides on conditions, habits and fitness.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kicker">Why Amaze</span><h2>Not a hotline. A medical team.</h2></div>
+    <div class="cards3">
+      <div class="card reveal"><div class="ic">⏱</div><h3>No appointment, no waiting room</h3><p>Open the app and reach someone by message, audio or video — any hour, any day. Nothing to book, no forms to fill in first.</p></div>
+      <div class="card reveal"><div class="ic">✚</div><h3>They can actually treat you</h3><p>The medical team can diagnose, treat, prescribe, and order tests and referrals — not just tell you to see someone else.</p></div>
+      <div class="card reveal"><div class="ic">⚖</div><h3>Someone on your side for the bills</h3><p>Patient advocates handle the part nobody else helps with: a bill that looks wrong, a coverage question, finding the right specialist.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="amz-note">
+  <div class="wrap reveal">
+    <p>The app can notice when you pull into an emergency room parking lot — and reach you before you walk in, in case there's a faster answer.</p>
+    <div class="src">Amaze reports that members use the service more than 50% of the time in year one, and that ER visits drop by more than 40%. Those are Amaze's own figures, not independently verified.</div>
+  </div>
+</section>
+
+<section class="advocate">
+  <div class="wrap">
+    <div class="adv-grid">
+      <div class="adv-photo reveal"><img src="jesse-headshot.jpg" alt="Jesse Stamm" width="480" height="480"></div>
+      <div class="reveal">
+        <span class="kicker">Meet your advocate</span>
+        <h2>Jesse Stamm</h2>
+        <p>I'm an independent agent in Lake Nona, Orlando. I spend my days shopping the whole market on behalf of families — health, life and retirement — and explaining what I find in plain English.</p>
+        <p>Amaze is the piece I kept wishing my clients had: somewhere to turn at 9pm on a Sunday that doesn't end in an emergency room bill. Enroll through the link below and I'm your point of contact — call me if anything about it is unclear.</p>
+        <a href="https://app.amazepbc.com/members/confirmaccess?rs=0&amp;activationcode=EMPOWERINS2&amp;referencecode=TM5YXYZA" class="pill" target="_blank" rel="noopener">Enroll with Jesse</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kicker">How it works</span><h2>Three steps, about five minutes.</h2></div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">1</div><h3>Enroll online</h3><p>Use the link on this page. It takes a few minutes and tells Amaze you came from me.</p></div>
+      <div class="step reveal"><div class="num">2</div><h3>Download the app, add your family</h3><p>Add your spouse or partner and your children up to 26 — three lines, then Add Family Member.</p></div>
+      <div class="step reveal"><div class="num">3</div><h3>Use it whenever you need it</h3><p>Message, call or video a clinician any hour. There's nothing more to pay at the end of a visit.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kicker">Questions</span><h2>Straight answers.</h2></div>
+    <div class="qa-grid">
+      <div class="qa reveal"><h3>Is Amaze health insurance?</h3><p>No. Amaze is a virtual care membership — a subscription, in their own words. It doesn't replace a medical plan and it won't pay a hospital bill. It sits alongside your coverage and handles the everyday things.</p></div>
+      <div class="qa reveal"><h3>Who does the membership cover?</h3><p>You, your spouse or partner, and your children up to age 26 — all on one flat price. You add them inside the app once you're enrolled.</p></div>
+      <div class="qa reveal"><h3>Is there a charge each time we use it?</h3><p>No. There's no fee per visit and no appointment needed, however many times you use it in a month.</p></div>
+      <div class="qa reveal"><h3>Can I cancel?</h3><p>Yes. It renews month to month and you can cancel at any time. Your account stays with you afterwards, with the free features — the search tool, symptom checker and video library.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap reveal">
+    <h2>Care for the whole family, tonight.</h2>
+    <p>Enroll in a few minutes, and have a medical team on hand from the moment you download the app.</p>
+    <a href="https://app.amazepbc.com/members/confirmaccess?rs=0&amp;activationcode=EMPOWERINS2&amp;referencecode=TM5YXYZA" class="pill" target="_blank" rel="noopener">Enroll in Amaze</a>
+    <div class="pagedisc" style="margin-left:auto;margin-right:auto">Amaze Health is a virtual care membership, not health insurance. It does not replace a medical plan, and it is not a substitute for emergency care — in an emergency, call 911. Membership terms, pricing and availability are set by Amaze Health and may change.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot"><div class="word">OPTIMUM</div><div class="tag">Own Your Future.</div></div>
+      <div class="foot-links">
+        <div class="foot-col"><div class="h">Explore</div><a href="health.html">Health</a><a href="life.html">Life</a><a href="retirement.html">Retirement</a><a href="amaze.html">Amaze Health</a></div>
+        <div class="foot-col"><div class="h">Company</div><a href="index.html#stories">About</a><a href="index.html#join">Join our team</a><a href="index.html#quote">Contact</a></div>
+        <div class="foot-col"><div class="h">Get started</div><a href="https://app.amazepbc.com/members/confirmaccess?rs=0&amp;activationcode=EMPOWERINS2&amp;referencecode=TM5YXYZA" target="_blank" rel="noopener">Enroll in Amaze</a><a href="index.html#quote">Get a quote</a><a href="tel:4079003122">(407) 900-3122</a></div>
+      </div>
+    </div>
+    <div class="legal">Amaze Health is not health insurance; it is a virtual care membership provided by Amaze Health, which is responsible for the service and its terms. Wealth Builders Group LLC, dba Optimum — a licensed insurance agency. We are not financial advisors, investment advisors, or certified planners; nothing here is financial, tax, or legal advice. Product availability, benefits, and costs vary by carrier, state, and eligibility. © 2026 Wealth Builders Group LLC. All rights reserved.</div>
+  </div>
+</footer>
+<script>
+(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});document.querySelectorAll('.reveal,.img-reveal').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>
