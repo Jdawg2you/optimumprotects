@@ -120,6 +120,8 @@
   .step h3::before{content:counter(step) ". ";color:var(--gold)}
   .step p{margin:.25rem 0 0;color:var(--muted);font-size:.95rem}
   .step p b{color:var(--ink)}
+  .step ul.activate{margin:.5rem 0 0;padding-left:1.15rem;color:var(--muted);font-size:.95rem;display:grid;gap:.18rem}
+  .step ul.activate b{color:var(--ink)}
   .btn{display:inline-block;font-family:var(--ui);font-weight:600;font-size:.85rem;padding:.75rem 1.3rem;border-radius:40px;background:var(--gold);color:#2b2205;text-decoration:none;border:1px solid var(--gold);border-radius:40px;white-space:nowrap;transition:.2s}
   .btn:hover,.btn:focus-visible{background:var(--gold-deep);color:#fff;border-color:var(--gold-deep);outline:none}
   .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line);border-width:1.5px}
@@ -323,8 +325,14 @@
     </li>
     <li class="step" data-key="tele">
       <button class="box" aria-label="Mark done"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B0B0B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
-      <div><h3>Register with EasyCare2go telehealth</h3><p>24/7 doctors by phone, chat, or video, unlimited, at no cost — they'll call a prescription in to your local pharmacy. Register now so it's ready at 2 a.m. Group ID: <b>mlins2023</b>.</p></div>
-      <a class="btn" href="https://manhattanlife.myeasycare2go.com/login" target="_blank" rel="noopener">Register</a>
+      <div><h3>Activate your EasyCare2go account</h3><p>24/7 doctors by phone, chat, or video, unlimited, at no cost &mdash; they'll call a prescription in to your local pharmacy. Activate it now so it's ready at 2 a.m. <b>You have to activate before you can log in</b>, and the activation page asks for three things:</p>
+        <ul class="activate">
+          <li><b>Member Number</b> &mdash; your <b>Affordable Choice policy number</b></li>
+          <li><b>Group Number</b> &mdash; <b>MLINS2023</b></li>
+          <li><b>Date of Birth</b></li>
+        </ul>
+        <p>Then you confirm your contact details and create a password &mdash; three short steps. After that you sign in at <a href="https://manhattanlife.myeasycare2go.com/login" target="_blank" rel="noopener">manhattanlife.<b>my</b>easycare2go.com</a>, which is the login site, not the activation one.</p></div>
+      <a class="btn" href="https://manhattanlife.easycare2go.com/login" target="_blank" rel="noopener">Activate</a>
     </li>
     <li class="step" data-key="careguide">
       <button class="box" aria-label="Mark done"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B0B0B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></button>
@@ -389,7 +397,7 @@
     <div class="card">
       <h3>Price-check tools</h3>
       <ul>
-        <li><a href="https://manhattanlife.myeasycare2go.com/login" target="_blank" rel="noopener">Rx Valet</a> — inside your EasyCare2go login (Group ID <strong>mlins2023</strong>) · support <a href="tel:+18557982538">1-855-798-2538</a></li>
+        <li><a href="https://manhattanlife.myeasycare2go.com/login" target="_blank" rel="noopener">Rx Valet</a> — inside your EasyCare2go login (Group Number <strong>MLINS2023</strong>) · support <a href="tel:+18557982538">1-855-798-2538</a></li>
         <li><a href="https://www.singlecare.com" target="_blank" rel="noopener">SingleCare</a> — text yourself a coupon for any pharmacy</li>
         <li><a href="https://www.goodrx.com" target="_blank" rel="noopener">GoodRx</a></li>
       </ul>
@@ -453,8 +461,8 @@
         <p class="src">CareGuide's own material: <a href="https://online.flippingbook.com/view/21294178/2/" target="_blank" rel="noopener">member flyer</a> · <a href="https://online.flippingbook.com/view/973214304/2/" target="_blank" rel="noopener">full FAQ</a>. CareGuide is an advocacy service, not an insurance company; savings vary by case and aren't guaranteed.</p>
       </details></div><div class="qr" data-qr="https://www.cgasaves.com/manhattanlifemembers"></div></div>
     <div class="vendor tealchip"><div><div class="use">Provider network</div><h3>First Health Network</h3><a href="tel:+18002265116">800-226-5116</a><br><a href="https://providerlocator.firsthealth.com/home/index" target="_blank" rel="noopener">Provider locator</a><small>Client code FHIND. Confirm any doctor, hospital, urgent care, or ER.</small><a class="jumpto" href="#doctor">How to use it: Finding a doctor ↑</a></div><div class="qr" data-qr="https://providerlocator.firsthealth.com/home/index"></div></div>
-    <div class="vendor tealchip"><div><div class="use">24/7 telehealth &amp; Rx discounts</div><h3>EasyCare2go</h3><a href="tel:+18667313017">866-731-3017</a><br><a href="https://manhattanlife.myeasycare2go.com/login" target="_blank" rel="noopener">Member login</a><small>Phone, chat, or video doctors; mental health; lifestyle discounts. Group ID mlins2023.</small><a class="jumpto" href="#start">How to set it up: Start here ↑</a></div><div class="qr" data-qr="https://manhattanlife.myeasycare2go.com/login"></div></div>
-    <div class="vendor tealchip"><div><div class="use">Prescription discounts</div><h3>Rx Valet</h3><a href="https://manhattanlife.myeasycare2go.com/login" target="_blank" rel="noopener">Open EasyCare2go</a><br><a href="tel:+18557982538">Support 1-855-798-2538</a><small>Inside your EasyCare2go login (Group ID mlins2023) — open Rx Valet there, then show the card at the pharmacy counter.</small><a class="jumpto" href="#rx">How to use it: Prescriptions ↑</a></div><div class="qr" data-qr="https://manhattanlife.myeasycare2go.com/login"></div></div>
+    <div class="vendor tealchip"><div><div class="use">24/7 telehealth &amp; Rx discounts</div><h3>EasyCare2go</h3><a href="tel:+18667313017">866-731-3017</a><br><a href="https://manhattanlife.easycare2go.com/login" target="_blank" rel="noopener">Activate an account</a><br><a href="https://manhattanlife.myeasycare2go.com/login" target="_blank" rel="noopener">Member login</a><small>Activate first with your Affordable Choice policy number, Group Number <b>MLINS2023</b> and your date of birth. Phone, chat, or video doctors; mental health; lifestyle discounts.</small><a class="jumpto" href="#start">How to set it up: Start here ↑</a></div><div class="qr" data-qr="https://manhattanlife.myeasycare2go.com/login"></div></div>
+    <div class="vendor tealchip"><div><div class="use">Prescription discounts</div><h3>Rx Valet</h3><a href="https://manhattanlife.myeasycare2go.com/login" target="_blank" rel="noopener">Open EasyCare2go</a><br><a href="tel:+18557982538">Support 1-855-798-2538</a><small>Inside your EasyCare2go login (Group Number MLINS2023) — open Rx Valet there, then show the card at the pharmacy counter.</small><a class="jumpto" href="#rx">How to use it: Prescriptions ↑</a></div><div class="qr" data-qr="https://manhattanlife.myeasycare2go.com/login"></div></div>
     <div class="vendor sagechip"><div><div class="use">Dental network</div><h3>Careington</h3><a href="tel:+18002900424">800-290-0424</a><br><a href="https://manhattanlife.solutionssimplified.com/" target="_blank" rel="noopener">Find a dentist</a><small>Member services for the DVH Select plan.</small><a class="jumpto" href="#dental">How to use it: Dental, vision &amp; hearing ↑</a></div><div class="qr" data-qr="https://manhattanlife.solutionssimplified.com/"></div></div>
     <div class="vendor sagechip"><div><div class="use">Discounted imaging</div><h3>Green Imaging</h3><a href="tel:+18449684647">844-968-4647</a><br><a href="https://www.greenimaging.net" target="_blank" rel="noopener">greenimaging.net</a><small>Text 713-524-9190 for a voucher. MRI, CT, X-ray, ultrasound, mammogram.</small><a class="jumpto" href="#imaging">How to use it: Imaging &amp; labs ↑</a></div><div class="qr" data-qr="https://www.greenimaging.net"></div></div>
     <div class="vendor sagechip"><div><div class="use">Discounted labs</div><h3>DirectLabs</h3><a href="tel:+18009080000">800-908-0000</a><br><a href="https://www.directlabs.com/" target="_blank" rel="noopener">directlabs.com</a><small>Client code R-MLAC for phone orders.</small><a class="jumpto" href="#imaging">How to use it: Imaging &amp; labs ↑</a></div><div class="qr" data-qr="https://www.directlabs.com/"></div></div>
